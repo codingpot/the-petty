@@ -42,3 +42,4 @@ func main() {
 * [X] channel
 * [ ] interface
 * [ ] function
+* [ ] unexported field
