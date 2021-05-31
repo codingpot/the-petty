@@ -2,9 +2,9 @@
 
 ## import
 
-`go get github.com/codingpod/the-petty/deepcopy`
+`go get github.com/codingpot/the-petty/deepcopy`
 
-`import github.com/codingpod/the-petty/deepcopy`
+`import github.com/codingpot/the-petty/deepcopy`
 
 ## how to use
 
@@ -12,7 +12,7 @@
 import (
     "fmt"
 
-    "github.com/codingpod/the-petty/deepcopy"
+    "github.com/codingpot/the-petty/deepcopy"
 )
 
 type Point struct {
