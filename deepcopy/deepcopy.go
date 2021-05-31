@@ -11,7 +11,6 @@ func Copy(object interface{}) (interface{}, error) {
 }
 
 func copy(d *reflect.Value, f reflect.Value) error {
-	//fmt.Printf("start %v to %v\n", f.Interface(), d.Interface())
 	switch f.Kind() {
 	case reflect.Array:
 		*d = reflect.New(f.Type()).Elem()
@@ -23,6 +22,10 @@ func copy(d *reflect.Value, f reflect.Value) error {
 			d.Index(i).Set(n)
 		}
 	case reflect.Slice:
+		if f.IsNil() {
+			*d = f
+			return nil
+		}
 		*d = reflect.MakeSlice(f.Type(), f.Len(), f.Cap())
 		for i := 0; i < f.Len(); i++ {
 			n := reflect.New(f.Index(i).Type()).Elem()
@@ -34,6 +37,10 @@ func copy(d *reflect.Value, f reflect.Value) error {
 	case reflect.Interface:
 		fallthrough
 	case reflect.Ptr:
+		if f.IsNil() {
+			*d = f
+			return nil
+		}
 		c := reflect.Value{}
 		if err := copy(&c, f.Elem()); err != nil {
 			return err
@@ -50,8 +57,16 @@ func copy(d *reflect.Value, f reflect.Value) error {
 			d.Field(i).Set(v)
 		}
 	case reflect.Chan:
+		if f.IsNil() {
+			*d = f
+			return nil
+		}
 		*d = reflect.MakeChan(f.Type(), f.Cap())
 	case reflect.Map:
+		if f.IsNil() {
+			*d = f
+			return nil
+		}
 		iter := f.MapRange()
 		*d = reflect.MakeMap(f.Type())
 		for iter.Next() {
