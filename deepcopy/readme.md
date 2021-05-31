@@ -46,9 +46,8 @@ func main() {
 
 ## todos
 
-- [ ] recover
+- [X] recover
 - [ ] explitct GC
-- [ ] recover
 - [ ] unexported field
 - [ ] interface
 - [ ] function
