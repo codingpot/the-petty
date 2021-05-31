@@ -1,10 +1,17 @@
 package deepcopy
 
 import (
+	"log"
 	"reflect"
 )
 
 func Copy(object interface{}) (interface{}, error) {
+	defer func() {
+		v := recover()
+		if v != nil {
+			log.Println(v)
+		}
+	}()
 	d := reflect.New(reflect.TypeOf(object)).Elem()
 	err := copy(&d, reflect.ValueOf(object))
 	return d.Interface(), err
