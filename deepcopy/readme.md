@@ -43,3 +43,12 @@ func main() {
 * [ ] interface
 * [ ] function
 * [ ] unexported field
+
+## todos
+
+- [ ] recover
+- [ ] explitct GC
+- [ ] recover
+- [ ] unexported field
+- [ ] interface
+- [ ] function
